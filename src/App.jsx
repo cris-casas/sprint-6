@@ -1,11 +1,15 @@
 import React from 'react'
 import Scene from "./components/Scene/Scene"
+import Data from "./data"
 //import './App.css'
 
 function App() {
 
+  const nuevaArray = Data.map((texto) => {
+    return <Scene texto = {texto.text}/>
+  })
   return (
-    <Scene />
+  <div>{nuevaArray}</div>
   )
 }
 
