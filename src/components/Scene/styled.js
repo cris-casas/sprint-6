@@ -1,9 +1,12 @@
 import styled from 'styled-components'
 
-export const Cuadrado = styled.div`
-    border-radius: 100px;
-    border: 2px solid;
-    margin: 2em;
-    padding: 1em;
+export const BotonesNav = styled.div`
+    display:flex;
+    flex-wrap: wrap;
     text-align: center;
+`;
+
+export const Botones = styled.button`
+    flex: 50%;
+    padding: 20px;
 `;

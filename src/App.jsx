@@ -1,54 +1,44 @@
 import React from 'react'
+import { useState } from 'react'
 import Scene from "./components/Scene/Scene"
 import Data from "./data"
-//import './App.css'
+import { BotonesNav, Botones } from './components/Scene/styled'
+import './index.css'
 
 function App() {
 
-  const nuevaArray = Data.map((texto) => {
-    return <Scene texto = {texto.text}/>
-  })
-  return (
-  <div>{nuevaArray}</div>
-  )
-}
+  // STATES
+  const [count, setCount] = useState(0);
+ 
 
-export default App
+  // LOGIC
+  const anterior = () => {
+    setCount(count === 0 ? Data.length -1 : count - 1 );
+  };
 
-/*
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
+  const siguiente = () => {
+    setCount(count === Data.length -1 ? 0 : count + 1 );
+  };
 
   return (
-    <div className="App">
+  <div>
+    
+      <BotonesNav>
+        <Botones onClick={() => anterior()}>Anterior</Botones>
+        <Botones onClick={() => siguiente()}>Siguiente</Botones>
+      </BotonesNav>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {Data.map((frases) => (
+        <Scene
+          key = {frases.id}
+          frases = {frases.text}
+          active = {count === frases.id}
+        />
+          ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+
+  </div>
   )
 }
 
 export default App
-*/
